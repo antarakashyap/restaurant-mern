@@ -50,7 +50,7 @@ export const loginUser=async(req,res)=>{
 
         const isMatch=await bcrypt.compare(password,user.password);
         if(!isMatch){
-            return res.json({messgae:"Invail credentials",success:false})
+            return res.json({message:"Invalid credentials",success:false})
         }
 
         generateToken(res,{id:user._id,role:user.isAdmin?"admin":"user"})
@@ -95,7 +95,13 @@ export const adminLogin=async(req,res)=>{
         sameSite:"strict",
         maxAge:24*60*60*1000
     });
-       return res.json({message:"Admin logged in successfully",success:true})
+       return res.json({
+        success:true,
+        message:"Admin logged in successfully",
+        admin:{
+        admin:adminEmail,
+       },
+    });
 
     } catch (error) {
         console.log(error.message);
@@ -127,5 +133,17 @@ export const getProfile=async(req,res)=>{
         res.json(user)
     } catch (error) {
         return res.json({message:"Internal server error",success:false})
+    }
+}
+
+//this is for when you refresh tha page it will not logout
+export const isAuth=async(req,res)=>{
+    try {
+        const {id}=req.user;
+        const user=await User.findById(id).select("-password");
+        res.json({success:true, user});
+    } catch (error) {
+        return res.json({message:"Internal server error",success:false})
+
     }
 }

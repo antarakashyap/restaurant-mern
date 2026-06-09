@@ -8,7 +8,7 @@ const menuRoutes=express.Router();
 
 menuRoutes.post("/add",adminOnly,upload.single("image"),addMenuItem)
 menuRoutes.put("/update/:id",adminOnly,upload.single("image"),updateMenuItem)
-menuRoutes.put("/delete/:id",adminOnly,deleteMenuItem)
+menuRoutes.delete("/delete/:id",adminOnly,deleteMenuItem)
 menuRoutes.get("/all",getAllMenuItems)
 
 export default menuRoutes;
