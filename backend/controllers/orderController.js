@@ -5,7 +5,7 @@ import Cart from "../models/cartModel.js";
 export const placeOrder=async(req,res)=>{
     try {
         const {id}=req.user;
-        const {address}=req.body;
+        const {address, paymentMethod }=req.body;
         if(!address)
             return res.status(400).json({message:"Delivery address is required", success:false});
             
@@ -23,7 +23,8 @@ const newOrder=await Order.create({
         quantity:i.quantity
     })),
     totalAmount,
-    address
+    address,
+    paymentMethod,
 })
 
 //clear cart
@@ -46,7 +47,7 @@ export const getUserOrders=async(req,res)=>{
     try {
         const{id}=req.user;
         const orders=await Order.find({user:id}).sort({createdAt:-1});
-        res.status(200).json(orders);
+        res.status(200).json({orders,success:true});
 
     } catch (error) {
              console.log(error);

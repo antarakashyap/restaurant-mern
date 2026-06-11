@@ -3,10 +3,10 @@ import Menu from"../models/menuModel.js";
 //add to card from user
 export const addToCart=async(req,res)=>{
     try {
-        const {menuItemId,quantity}=req.body;
+        const {menuId,quantity}=req.body;
         const {id}=req.user;
 
-        const menuItem=await Menu.findById(menuItemId);
+        const menuItem=await Menu.findById(menuId);
         if (!menuItem)
             return res
             .status(404)
@@ -17,12 +17,12 @@ export const addToCart=async(req,res)=>{
             cart = new Cart({ user: id , items:[]});
         }  
 
-        const existingItem=cart.items.find((item)=>item.menuItem.toString()===menuItemId);
+        const existingItem=cart.items.find((item)=>item.menuItem.toString()===menuId);
         
         if(existingItem){
             existingItem.quantity+=quantity;
         }else{
-            cart.items.push({menuItem: menuItemId,quantity });
+            cart.items.push({menuItem: menuId,quantity });
         }
 
         await  cart.save();
@@ -43,7 +43,7 @@ export const getCart=async(req,res)=>{
         const cart=await Cart.findOne({user:id}).populate("items.menuItem");
         if (!cart)
             return res.status(200).json({ items: []});
-            res.status(200).json(cart);
+            res.status(200).json({cart,success:true});
 
     } catch (error) {
         console.log(error);
@@ -58,14 +58,16 @@ export const getCart=async(req,res)=>{
 export const removeFromCart=async(req,res)=>{
     try {
         const {id}=req.user;
-        const {menuItemId}=req.body;
+        const {menuId}=req.params;
         const cart=await Cart.findOne({user:id});
         if(!cart)
             return res.status(404).json({ message:"Cart not found"});
-cart.items=cart.items.filter((item)=>item.menuItem.toString()!==menuItemId)             
-await cart.save();
-res.status(200)
-.json({message:"Item removed from cart", success:true, cart});
+        cart.items=cart.items.filter(
+            (item)=>item.menuItem._id.toString()!==menuId
+        );             
+        await cart.save();
+        res.status(200)
+        .json({message:"Item removed from cart", success:true });
 
     } catch (error) {
         console.log(error);

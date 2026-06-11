@@ -41,7 +41,7 @@ export const getUserBooking=async(req,res)=>{
     try {
         const {id}=req.user;
         const bookings=await Booking.find({user:id}).sort({createdAt:-1,});
-        res.status(200).json(bookings);
+        res.status(200).json({bookings,success:true});
 
     } catch (error) {
           console.log(error);

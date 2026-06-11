@@ -5,7 +5,7 @@ import {Calendar, LogOut, Package, ShoppingCart, UserCircle} from "lucide-react"
 import toast from "react-hot-toast";
 
 const Navbar = () => {
-  const { navigate, user, setUser , axios }=useContext(AppContext);
+  const { navigate, user, setUser , axios , cartCount }=useContext(AppContext);
   const [isMenuOpen, setIsMenuOpen]=useState(false);
   const [isProfileOpen, setIsProfileOpen]=useState(false);
 
@@ -52,6 +52,13 @@ const Navbar = () => {
               Menus
             </Link>
 
+             <Link 
+            to={"/book-table"} 
+            className="text-gray-700 hover:text-blue-600 transition-colors font-mendium"
+            >
+              Book Table
+            </Link>
+
             <Link 
             to={"/contact"} 
             className="text-gray-700 hover:text-blue-600 transition-colors font-mendium"
@@ -72,7 +79,7 @@ const Navbar = () => {
               <ShoppingCart size={22} className="text-gray-700 "/>
               <span className="absolute -top-1 -right-1 bg-orange-500 text-white text-xs 
               rounded-full w-5 h-5 flex items-center justify-center font-medium">
-                3
+                {cartCount>0?cartCount:0}
               </span>
             </button>
             {/* login/profile - desktop */}
@@ -150,6 +157,13 @@ const Navbar = () => {
             className="text-gray-700 hover:text-blue-600 transition-colors font-mendium"
             >
               Menus
+            </Link>
+
+            <Link 
+            to={"/book-table"} 
+            className="text-gray-700 hover:text-blue-600 transition-colors font-mendium"
+            >
+              Book Table
             </Link>
 
             <Link 
