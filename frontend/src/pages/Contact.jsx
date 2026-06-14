@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
+import {  Send } from "lucide-react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -59,84 +59,11 @@ const Contact = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Contact Information */}
-          <div>
-            <h2 className="text-3xl font-bold mb-8 text-gray-800">
-              Contact Information
-            </h2>
-
-            <div className="space-y-6">
-              <div className="flex items-start space-x-4">
-                <div className="bg-orange-500 p-3 rounded-lg">
-                  <MapPin className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg text-gray-800">
-                    Address
-                  </h3>
-                  <p className="text-gray-600">
-                    123 Restaurant Street
-                    <br />
-                    Food District, City 12345
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="bg-orange-500 p-3 rounded-lg">
-                  <Phone className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg text-gray-800">Phone</h3>
-                  <p className="text-gray-600">+1 (555) 123-4567</p>
-                  <p className="text-gray-600">+1 (555) 987-6543</p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="bg-orange-500 p-3 rounded-lg">
-                  <Mail className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg text-gray-800">Email</h3>
-                  <p className="text-gray-600">info@restaurant.com</p>
-                  <p className="text-gray-600">reservations@restaurant.com</p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="bg-orange-500 p-3 rounded-lg">
-                  <Clock className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg text-gray-800">
-                    Opening Hours
-                  </h3>
-                  <p className="text-gray-600">
-                    Monday - Friday: 11:00 AM - 10:00 PM
-                  </p>
-                  <p className="text-gray-600">
-                    Saturday - Sunday: 10:00 AM - 11:00 PM
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Map Image */}
-            <div className="mt-8 rounded-lg overflow-hidden shadow-lg">
-              <img
-                src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=600"
-                alt="Restaurant Location"
-                className="w-full h-64 object-cover"
-              />
-            </div>
-          </div>
+        <div className="flex justify-center">       
 
           {/* Contact Form */}
-          <div className="bg-white rounded-lg shadow-lg p-8">
-            <h2 className="text-3xl font-bold mb-6 text-gray-800">
-              Send us a Message
+          <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-3xl">            <h2 className="text-3xl font-bold mb-6 text-gray-800">
+              Contact Our Team
             </h2>
 
             {submitted && (
@@ -221,7 +148,7 @@ const Contact = () => {
                 className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center space-x-2"
               >
                 <Send className="w-5 h-5" />
-                <span>Send Message</span>
+                <span>Send Inquiry</span>
               </button>
             </div>
           </div>

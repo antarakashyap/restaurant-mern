@@ -5,7 +5,15 @@ const Hero = () => {
   const { navigate } = useContext(AppContext);
   return (
     <section
-      className="relative h-[90vh] flex items-center justify-center bg-center bg-cover"
+      className=" relative
+    h-[70vh]
+    md:h-[90vh]
+    flex
+    items-center
+    justify-center
+    bg-center
+    bg-cover
+    overflow-hidden"
       style={{
         backgroundImage:
           "url('/bodyimage.jpg')",

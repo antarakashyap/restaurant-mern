@@ -33,7 +33,7 @@ const Bookings = () => {
 
       if (data.success) {
         toast.success(data.message);
-        fecthOrders();
+        fecthBookings();
       } else {
         toast.error(data.message);
       }

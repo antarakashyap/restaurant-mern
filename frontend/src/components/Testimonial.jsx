@@ -5,20 +5,19 @@ export default function Testimonial() {
         <div className="flex flex-col items-center px-5 py-4 relative">
           <img
             className="h-24 w-24 absolute -top-14 rounded-full"
-            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200"
+            src="https://i.pinimg.com/736x/2e/85/24/2e8524b19e18185e6e74fe4873c5f901.jpg"
             alt="userImage1"
           />
           <div className="pt-8 text-center">
             <h1 className="text-lg font-medium text-gray-800">
-              Donald Jackman
+              James Washington
             </h1>
-            <p className="text-gray-800/80">Content Creator</p>
+            <p className="text-gray-800/80">HEAD CHEF</p>
           </div>
         </div>
         <p className="text-gray-500 px-6 text-center">
-          I've been using imagify for nearly two years, primarily for Instagram,
-          and it has been incredibly user-friendly, making my work much easier.
-        </p>
+          Leads the kitchen and is known for creating menus and signature dishes.
+          </p>
         <div className="flex justify-center pt-4">
           <div className="flex gap-0.5">
             <svg
@@ -89,20 +88,19 @@ export default function Testimonial() {
         <div className="flex flex-col items-center px-5 py-4 relative">
           <img
             className="h-24 w-24 absolute -top-14 rounded-full"
-            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200"
+            src="https://i.pinimg.com/736x/8a/cd/f0/8acdf02f50835e846520847d522b1793.jpg"
             alt="userImage2"
           />
           <div className="pt-8 text-center">
             <h1 className="text-lg font-medium text-gray-800">
               Richard Nelson
             </h1>
-            <p className="text-gray-800/80">Instagram Influencer</p>
+            <p className="text-gray-800/80">SOUS-CHEF</p>
           </div>
         </div>
         <p className="text-gray-500 px-6 text-center">
-          I've been using imagify for nearly two years, primarily for Instagram,
-          and it has been incredibly user-friendly, making my work much easier.
-        </p>
+          Supports the Head Chef and specializes in coordinating food preparation and maintaining quality.
+           </p>
         <div className="flex justify-center pt-4">
           <div className="flex gap-0.5">
             <svg
@@ -173,20 +171,19 @@ export default function Testimonial() {
         <div className="flex flex-col items-center px-5 py-4 relative">
           <img
             className="h-24 w-24 absolute -top-14 rounded-full"
-            src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&h=200&auto=format&fit=crop"
+            src="https://i.pinimg.com/736x/be/3b/a2/be3ba2ece8148805e5523f09aedfb39b.jpg"
             alt="userImage3"
           />
           <div className="pt-8 text-center">
             <h1 className="text-lg font-medium text-gray-800">
-              James Washington
+              Donald Jackman
             </h1>
-            <p className="text-gray-800/80">Marketing Manager</p>
+            <p className="text-gray-800/80">COMMIS CHEF</p>
           </div>
         </div>
         <p className="text-gray-500 px-6 text-center">
-          I've been using imagify for nearly two years, primarily for Instagram,
-          and it has been incredibly user-friendly, making my work much easier.
-        </p>
+          Assists senior chefs and specializes in basic food preparation, cutting, and cooking techniques.
+           </p>
         <div className="flex justify-center pt-4">
           <div className="flex gap-0.5">
             <svg
