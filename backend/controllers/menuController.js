@@ -30,7 +30,7 @@ export const addMenuItem=async(req,res)=>{
 //code for get all menu items
 export const getAllMenuItems=async(req,res)=>{
     try {
-        const menuItems=await Menu.find().populate("category","name").sort({createdAt:-1});
+        const menuItems=await Menu.find().populate("category").sort({createdAt:-1});
         res.status(200).json({ success:true, menuItems});
 
     } catch (error) {

@@ -2,32 +2,73 @@ import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import { Search, X } from "lucide-react";
 import MenuCard from "../components/MenuCard";
+import { useSearchParams } from "react-router-dom";
 const Menu = () => {
   const { menus } = useContext(AppContext);
+  menus.forEach((menu) => {
+  console.log(
+    menu.name,
+    menu.category
+  );
+});
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredMenus, setFilteredMenus] = useState([]);
+  const [searchParams] = useSearchParams();
 
-  useEffect(() => {
-    if (searchQuery === "") {
-      setFilteredMenus(menus);
-    } else {
-      const filtered = menus.filter((menu) =>
-        menu.name.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-      setFilteredMenus(filtered);
-    }
-  }, [searchQuery, menus]);
+const selectedCategory =
+  searchParams.get("category");
+  console.log("Selected Category:", selectedCategory);
+menus.forEach((menu) => {
+  console.log(
+    menu.name,
+    "=>",
+    menu.category?.name
+  );
+});
+  // useEffect(() => {
+  //   if (searchQuery === "") {
+  //     setFilteredMenus(menus);
+  //   } else {
+  //     const filtered = menus.filter((menu) =>
+  //       menu.name.toLowerCase().includes(searchQuery.toLowerCase())
+  //     );
+  //     setFilteredMenus(filtered);
+  //   }
+  // }, [searchQuery, menus]);
   const handleClearSearch = () => {
     setSearchQuery("");
   };
+  useEffect(() => {
+  let filtered = menus;
+
+  // Category Filter by ID
+  if (selectedCategory) {
+    filtered = filtered.filter(
+      (menu) =>
+        menu.category?._id === selectedCategory
+    );
+  }
+
+  // Search Filter
+  if (searchQuery) {
+    filtered = filtered.filter((menu) =>
+      menu.name
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase())
+    );
+  }
+
+  setFilteredMenus(filtered);
+}, [menus, searchQuery, selectedCategory]);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12">
       <div className="container mx-auto px-4">
         {/* Header Section */}
 
-        <div>
-          <h1>
-            . Our <span className="text-yellow-500">Menu</span>
+        <div className="text-center">
+          <h1 className="text-4xl font-bold mb-3">
+            <span className="text-yellow-500">Menu</span>
           </h1>{" "}
           <p className="text-gray-600 max-w-2xl mx-auto mb-8">
             Explore our delicious selection of handcrafted dishes made with the

@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
-import { CircleX } from "lucide-react";
+import { CircleX,Pencil } from "lucide-react";
 import toast from "react-hot-toast";
 const Menus = () => {
-  const { menus, fetchMenus, axios } = useContext(AppContext);
+  const { menus, fetchMenus, axios, navigate } = useContext(AppContext);
 
   const deleteMenu = async (id) => {
     try {
@@ -40,12 +40,19 @@ const Menus = () => {
                 <p>{item?.name}</p>
                 <p>{item?.category?.name}</p>
                 <p>${item.price}</p>
-                <p
-                  className="text-red-600  cursor-pointer hover:underline"
-                  onClick={() => deleteMenu(item._id)}
-                >
-                  <CircleX />
-                </p>
+                <div className="flex gap-4">
+  <Pencil
+    className="text-blue-600 cursor-pointer"
+    onClick={() =>
+      navigate(`/admin/edit-menu/${item._id}`)
+    }
+  />
+
+  <CircleX
+    className="text-red-600 cursor-pointer"
+    onClick={() => deleteMenu(item._id)}
+  />
+</div>
               </div>
               <hr className="w-full text-gray-300" />
             </div>

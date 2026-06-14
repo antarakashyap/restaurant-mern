@@ -24,6 +24,7 @@ import Categories from "./pages/admin/Categories";
 import Menus from "./pages/admin/Menus";
 import Orders from "./pages/admin/Orders";
 import Bookings from "./pages/admin/Bookings";
+import EditMenu from "./pages/admin/EditMenu";
 const App = () => {
 // this line is for admin dont need navbar (const adminPath=useLocation().pathname.includes("admin"))
   const adminPath=useLocation().pathname.includes("admin");
@@ -51,6 +52,7 @@ const App = () => {
       <Route index element={admin ?<Dashboard/>:<AdminLayout/>}/>
       <Route path="add-category" element={admin ?<AddCategory/>:<AdminLayout/>}/>
       <Route path="add-menu" element={admin ?<AddMenu/>:<AdminLayout/>}/>
+      <Route path="edit-menu/:id" element={admin ?<EditMenu/>:<AdminLayout/>}/>
       <Route path="categories" element={admin ?<Categories/>:<AdminLayout/>}/>
       <Route path="menus" element={admin ?<Menus/>:<AdminLayout/>}/>
       <Route path="orders" element={admin ?<Orders/>:<AdminLayout/>}/>

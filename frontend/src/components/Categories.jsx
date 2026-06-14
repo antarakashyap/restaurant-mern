@@ -13,7 +13,13 @@ const Categories = () => {
         <p> Browse our delicious collection and find something you'll love in every bite.</p>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
           {categories.map((cat) => (
-            <div key={cat._id} className="cursor-pointer group">
+            // <div key={cat._id} className="cursor-pointer group">
+              <div
+                key={cat._id}
+                className="cursor-pointer group"
+                onClick={() => navigate(`/menu?category=${cat._id}`)}
+              >
+
               <div className="relative">
                 <div className="w-32 h-32 mx-auto rounded-full overflow-hidden shadow-lg border-4 border-white group-hover:border-yellow-400 transition-all duration-300 group-hover:scale-110 group-hover:shadow-2xl">
                   <img
