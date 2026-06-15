@@ -7,8 +7,8 @@ const generateToken=(res,payload)=>{
     const token=jwt.sign(payload,process.env.JWT_SECRET,{expiresIn:"1d"});
     res.cookie("token",token,{
         httpOnly:true,
-        // secure:process.env.NODE_ENV === "production",
-        secure:true,
+        secure:process.env.NODE_ENV === "production",
+        // secure:true,
         sameSite:"none",
         path: "/",
         maxAge:24*60*60*1000
@@ -38,6 +38,7 @@ export const registerUser=async(req,res)=>{
 }
 
 //User login
+console.log("NODE_ENV =", process.env.NODE_ENV);
 export const loginUser=async(req,res)=>{
     try{
         const {email,password}=req.body;
