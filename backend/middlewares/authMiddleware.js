@@ -1,17 +1,16 @@
 import jwt from "jsonwebtoken";
-export const protect=(req,res,next)=>{
-    console.log("Cookies:", req.cookies);
-    const token=req.cookies.token;
-    if(!token){
-        return res.status(401).json({message:"Not Authorized",success:false})
-    }
-    try {
-        const decoded=jwt.verify(token,process.env.JWT_SECRET);
-        req.user=decoded;
-        next();
-    } catch (error) {
-        res.status(401).json({message:"Invalid token"});
-    }
+// export const protect=(req,res,next)=>{
+//     const token=req.cookies.token;
+//     if(!token){
+//         return res.status(401).json({message:"Not Authorized",success:false})
+//     }
+//     // try {
+//     //     const decoded=jwt.verify(token,process.env.JWT_SECRET);
+//     //     req.user=decoded;
+//     //     next();
+//     // } catch (error) {
+//     //     res.status(401).json({message:"Invalid token"});
+//     // }
 
 //     try {
 
@@ -45,94 +44,62 @@ export const protect=(req,res,next)=>{
 // }
 
 
-// export const protect = (req, res, next) => {
-//     const token = req.cookies.token;
+export const protect = (req, res, next) => {
+    console.log("Cookies:", req.cookies);
+    console.log("Headers Cookie:", req.headers.cookie);
 
-//     if (!token) {
-//         return res.status(401).json({
-//             message: "Not Authorized",
-//             success: false
-//         });
-//     }
+    const token = req.cookies.token;
 
-//     try {
-//         const decoded = jwt.verify(
-//             token,
-//             process.env.JWT_SECRET
-//         );
-
-//         req.user = decoded;
-
-//         next();
-
-//     } catch (error) {
-//         return res.status(401).json({
-//             message: "Invalid token",
-//             success: false
-//         });
-//     }
-// };
-
-export const adminOnly=(req,res,next)=>{
-    const token=req.cookies.token;
-
-    if(!token){
+    if (!token) {
         return res.status(401).json({
-            message:"Not Authorized",
-            success:false
+            message: "Not Authorized",
+            success: false
         });
     }
 
     try {
-
-        const decoded=jwt.verify(
+        const decoded = jwt.verify(
             token,
             process.env.JWT_SECRET
         );
 
-        if(
-            decoded.email !== process.env.ADMIN_EMAIL
-        ){
-            return res.status(401).json({
-                message:"Not Authorized",
-                success:false
-            });
-        }
-
-        req.admin = decoded;
+        req.user = decoded;
 
         next();
 
     } catch (error) {
+         console.log("JWT Error:", error.message);
+         
         return res.status(401).json({
-            message:"Invalid token",
-            success:false
+            message: "Invalid token",
+            success: false
         });
     }
-}
+};
 
-// export const adminOnly = (req, res, next) => {
-//     const token = req.cookies.token;
+// export const adminOnly=(req,res,next)=>{
+//     const token=req.cookies.token;
 
-//     if (!token) {
+//     if(!token){
 //         return res.status(401).json({
-//             message: "Not Authorized",
-//             success: false
+//             message:"Not Authorized",
+//             success:false
 //         });
 //     }
 
 //     try {
-//         const decoded = jwt.verify(
+
+//         const decoded=jwt.verify(
 //             token,
 //             process.env.JWT_SECRET
 //         );
 
-//         if (
+//         if(
 //             decoded.email !== process.env.ADMIN_EMAIL
-//         ) {
+//         ){
 //             return res.status(401).json({
-//                 message: "Not Authorized",
-//                 success: false
+//                 message:"Not Authorized",
+//                 success:false
 //             });
 //         }
 
@@ -142,8 +109,45 @@ export const adminOnly=(req,res,next)=>{
 
 //     } catch (error) {
 //         return res.status(401).json({
-//             message: "Invalid token",
-//             success: false
+//             message:"Invalid token",
+//             success:false
 //         });
 //     }
-//
+// }
+
+export const adminOnly = (req, res, next) => {
+    const token = req.cookies.token;
+
+    if (!token) {
+        return res.status(401).json({
+            message: "Not Authorized",
+            success: false
+        });
+    }
+
+    try {
+        const decoded = jwt.verify(
+            token,
+            process.env.JWT_SECRET
+        );
+
+        if (
+            decoded.email !== process.env.ADMIN_EMAIL
+        ) {
+            return res.status(401).json({
+                message: "Not Authorized",
+                success: false
+            });
+        }
+
+        req.admin = decoded;
+
+        next();
+
+    } catch (error) {
+        return res.status(401).json({
+            message: "Invalid token",
+            success: false
+        });
+    }
+};
